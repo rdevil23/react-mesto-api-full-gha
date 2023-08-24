@@ -6,7 +6,7 @@ const usersRoutes = require('./users');
 const cardsRoutes = require('./cards');
 const { NotFoundError } = require('../errors/errors');
 
-app.get('/crash-test', () => {
+router.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
