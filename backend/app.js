@@ -5,10 +5,12 @@ const { errors } = require('celebrate');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
+
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { PORT = 3000, MONGODB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+
+const { PORT = 3000 } = process.env;
 
 const app = express();
 app.use(cors());
@@ -32,7 +34,7 @@ app.use(errors());
 app.use(errorHandler);
 
 mongoose
-  .connect(MONGODB_URL, {
+  .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -42,3 +44,5 @@ mongoose
 app.listen(PORT, () => {
   console.log(`Приложение слушает порт: ${PORT}`);
 });
+
+module.exports = app;
