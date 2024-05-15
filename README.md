@@ -1,4 +1,4 @@
-# react-mesto-api-full
+# Сервис Mesto
 
 ### **Описание проекта**
 
